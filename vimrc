@@ -93,8 +93,8 @@ set t_ti= t_te=
 
 
 "- 则点击光标不会换,用于复制
-set mouse-=a             " 鼠标暂不启用, 键盘党....
-" set mouse=a                 " Automatically enable mouse usage
+" set mouse-=a             " 鼠标暂不启用, 键盘党....
+set mouse=a                 " Automatically enable mouse usage
 " set mousehide               " Hide the mouse cursor while typing
 
 
@@ -454,6 +454,9 @@ vnoremap > >gv
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 
+" 将选中内容复制到系统剪切板
+vnoremap <leader>y "+y
+
 " auto jump to end of select
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
@@ -603,7 +606,8 @@ endif
 " theme主题
 set background=dark
 set t_Co=256
-colorscheme solarized
+color dracula
+" colorscheme solarized
 " colorscheme Tomorrow-Night
 " colorscheme Tomorrow-Night-Bright
 " colorscheme desert
