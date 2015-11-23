@@ -574,6 +574,8 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 " ###### nginx #########
 " Bundle 'evanmiller/nginx-vim-syntax'
 
+Bundle 'mileszs/ack.vim'
+
 
 " ####### temp #######
 " python code format
