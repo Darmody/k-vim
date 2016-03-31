@@ -626,3 +626,8 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+
+" config for special project
+augroup ProjectSetup
+  au BufRead,BufEnter ~/Workspace/popsugar_web/* set tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
