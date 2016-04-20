@@ -631,3 +631,6 @@ highlight SpellLocal term=underline cterm=underline
 augroup ProjectSetup
   au BufRead,BufEnter ~/Workspace/popsugar_web/* set tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
+
+" setup ack.vim for the_silver_searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'"
