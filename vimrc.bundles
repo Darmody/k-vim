@@ -96,8 +96,8 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 " 跳转到定义处, 分屏打开
 let g:ycm_goto_buffer_command = 'horizontal-split'
-" nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
 " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
@@ -252,7 +252,7 @@ let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|node_modules)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
 let g:ctrlp_working_path_mode=0
@@ -262,12 +262,12 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 " 如果安装了ag, 使用ag
-" if executable('ag')
-  " " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " " ag is fast enough that CtrlP doesn't need to cache
-  " let g:ctrlp_use_caching = 0
-" endif
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 
 " ctrlp插件1 - 不用ctag进行函数快速跳转
@@ -404,7 +404,7 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_synchronize_view=0
 let g:nerdtree_tabs_synchronize_focus=0
 " 自动开启nerdtree
-"let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=1
 
 
 " Vim Workspace Controller
@@ -539,12 +539,14 @@ let g:vim_markdown_folding_disabled=1
 
 " ###### HTML/JS/JQUERY/CSS #########
 
-" for javascript  注意: syntax这个插件要放前面
-Bundle 'jelera/vim-javascript-syntax'
+Bundle 'othree/yajs.vim'
 Bundle "pangloss/vim-javascript"
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+Bundle 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 
 
 " for javascript 自动补全,配合YCM,需要安装nodejs&npm  see
@@ -552,7 +554,7 @@ let g:html_indent_style1 = "inc"
 " Bundle 'marijnh/tern_for_vim'
 
 " for jquery
-Bundle 'nono/jquery.vim'
+" Bundle 'nono/jquery.vim'
 
 " ###### emmet HTML complete #########
 " Bundle "mattn/emmet-vim"
@@ -567,6 +569,10 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 " for css color
 " not work in iterm2 which termianl selection is not xterm-256
 " Bundle 'ap/vim-css-color'
+Bundle 'JulesWang/css.vim'
+Bundle 'cakebaker/scss-syntax.vim'
+
+Bundle 'moll/vim-node'
 
 " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
 " Bundle 'gorodinskiy/vim-coloresque'
