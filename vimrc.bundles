@@ -382,8 +382,8 @@ au Syntax * RainbowParenthesesLoadBraces
 " ################### 显示增强-主题 ###################"
 
 " 主题 dracula
-Bundle 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Bundle 'duythinht/vim-coffee'
+" Bundle 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Bundle 'crusoexia/vim-dracula'
 
 " ################### 快速导航 ###################
 "目录导航

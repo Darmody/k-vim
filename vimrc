@@ -609,8 +609,8 @@ endif
 " theme主题
 set background=dark
 set t_Co=256
-colorscheme onedark
-" color dracula
+" colorscheme onedark
+colorscheme dracula
 
 " 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
