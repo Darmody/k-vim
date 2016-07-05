@@ -72,6 +72,8 @@ set nobackup
 " 关闭交换文件
 set noswapfile
 
+" 将下划线也当作单词边界
+set iskeyword-=_
 
 "create undo file
 if has('persistent_undo')
@@ -630,6 +632,9 @@ highlight SpellLocal term=underline cterm=underline
 " config for special project
 augroup ProjectSetup
   au BufRead,BufEnter ~/Workspace/popsugar_web/* set tabstop=4 shiftwidth=4 softtabstop=4
+  au BufRead,BufEnter ~/Workspace/newsletter-editor/**/*.php set tabstop=4 shiftwidth=4 softtabstop=4
+  au BufRead,BufEnter ~/Workspace/newsletter-editor-server/**/*.php set tabstop=4 shiftwidth=4 softtabstop=4
+  au BufRead,BufEnter ~/Workspace/newsletter-editor/**/*.js set tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
 " setup ack.vim for the_silver_searcher
