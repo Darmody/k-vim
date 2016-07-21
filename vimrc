@@ -1,28 +1,3 @@
-"==========================================
-" Author:  wklken
-" Version: 9.0
-" Email: wklken@yeah.net
-" BlogPost: http://www.wklken.me
-" ReadMe: README.md
-" Donation: http://www.wklken.me/pages/donation.html
-" Last_modify: 2015-05-02
-" Sections:
-"       -> Initial Plugin 加载插件
-"       -> General Settings 基础设置
-"       -> Display Settings 展示/排版等界面格式设置
-"       -> FileEncode Settings 文件编码设置
-"       -> Others 其它配置
-"       -> HotKey Settings  自定义快捷键
-"       -> FileType Settings  针对文件类型的设置
-"       -> Theme Settings  主题设置
-"
-"       -> 插件配置和具体设置在vimrc.bundles中
-"==========================================
-
-"==========================================
-" Initial Plugin 加载插件
-"==========================================
-
 " 修改leader键
 let mapleader = ','
 let g:mapleader = ','
@@ -39,14 +14,6 @@ endif
 " ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
 
-"==========================================
-" General Settings 基础设置
-"==========================================
-
-"以下配置有详细说明，一些特性不喜欢可以直接注解掉
-
-"set guifont=Monaco:h20          " 字体 && 字号
-
 " history存储容量
 set history=2000
 
@@ -61,11 +28,6 @@ filetype plugin indent on
 
 set autoread          " 文件修改之后自动载入。
 set shortmess=atI       " 启动的时候不显示那个援助索马里儿童的提示
-
-" 备份,到另一个位置. 防止误删, 目前是取消备份
-"set backup
-"set backupext=.bak
-"set backupdir=/tmp/vimbk/
 
 " 取消备份。 视情况自己改
 set nobackup
@@ -98,8 +60,8 @@ set t_ti= t_te=
 
 
 "- 则点击光标不会换,用于复制
-" set mouse-=a             " 鼠标暂不启用, 键盘党....
 set mouse=a                 " Automatically enable mouse usage
+" set mouse-=a             " 鼠标暂不启用, 键盘党....
 " set mousehide               " Hide the mouse cursor while typing
 
 
@@ -126,10 +88,6 @@ set magic
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-"==========================================
-" Display Settings 展示/排版等界面格式设置
-"==========================================
-"
 "显示当前的行号列号：
 set ruler
 ""在状态栏显示正在输入的命令
@@ -139,8 +97,6 @@ set showmode
 
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=7
-
-" set winwidth=79
 
 " 命令行（在状态行下）的高度，默认为1，这里是2
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
@@ -167,30 +123,6 @@ set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 
-" 代码折叠
-set foldenable
-" 折叠方法
-" manual    手工折叠
-" indent    使用缩进表示折叠
-" expr      使用表达式定义折叠
-" syntax    使用语法定义折叠
-" diff      对没有更改的文本进行折叠
-" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
-set foldlevel=99
-" 代码折叠自定义快捷键
-let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
-endfun
-
 " 缩进配置
 
 set smartindent   " Smart indent
@@ -213,7 +145,6 @@ set ttyfast
 " 00x增减数字时使用十进制
 set nrformats=
 
-
 " 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
 set relativenumber number
 au FocusLost * :set norelativenumber number
@@ -230,10 +161,6 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-
-"==========================================
-" FileEncode Settings 文件编码,格式
-"==========================================
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
@@ -252,10 +179,6 @@ set formatoptions+=m
 " 合并两行中文时，不在中间加空格：
 set formatoptions+=B
 
-
-"==========================================
-" others 其它设置
-"==========================================
 autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
 autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
 
@@ -283,12 +206,6 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
-"==========================================
-" HotKey Settings  自定义快捷键设置
-"==========================================
-
-" 主要按键重定义
 
 " 关闭方向键, 强迫自己用 hjkl
 map <Left> <Nop>
@@ -387,10 +304,7 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
 
-" --------tab/buffer相关
-
 "Use arrow key to change buffer"
-" TODO: 如何跳转到确定的buffer?
 " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
@@ -399,7 +313,6 @@ noremap <right> :bn<CR>
 
 
 " tab 操作
-" TODO: ctrl + n 变成切换tab的方法
 " http://vim.wikia.com/wiki/Alternative_tab_navigation
 " http://stackoverflow.com/questions/2005214/switching-to-a-particular-tab-in-vim
 "map <C-2> 2gt
@@ -419,7 +332,6 @@ map <leader>tm :tabm<cr>
 " 新建tab  Ctrl+t
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
-" TODO: 配置成功这里, 切换更方便, 两个键
 " nnoremap <C-S-tab> :tabprevious<CR>
 " nnoremap <C-tab>   :tabnext<CR>
 " inoremap <C-S-tab> <Esc>:tabprevious<CR>i
@@ -449,9 +361,6 @@ nnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
 vnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
 autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
-
-" ------- 选中及操作改键
-
 "Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
@@ -461,11 +370,6 @@ map Y y$
 
 " 将选中内容复制到系统剪切板
 vnoremap <leader>y "+y
-
-" auto jump to end of select
-" vnoremap <silent> y y`]
-" vnoremap <silent> p p`]
-" nnoremap <silent> p p`]
 
 " select all
 map <Leader>sa ggVG"
@@ -482,12 +386,6 @@ inoremap kj <Esc>
 " 滚动Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
-
-
-"Jump to start and end of line using the home row keys
-" 增强tab操作, 导致这个会有问题, 考虑换键
-"nmap t o<ESC>k
-"nmap T O<ESC>j
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
@@ -529,15 +427,10 @@ function! XTermPasteBegin()
 endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-"==========================================
-" FileType Settings  文件类型设置
-"==========================================
-
 " Python 文件的一般设置，比如不要 tab 等
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
-
 
 " 保存python文件时删除多余空格
 fun! <SID>StripTrailingWhitespaces()
@@ -547,7 +440,6 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
 
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
@@ -568,7 +460,6 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
-
 " set some keyword to highlight
 if has("autocmd")
   " Highlight TODO, FIXME, NOTE, etc.
@@ -577,10 +468,6 @@ if has("autocmd")
     autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
   endif
 endif
-
-"==========================================
-" Theme Settings  主题设置
-"==========================================
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -611,8 +498,9 @@ endif
 " theme主题
 set background=dark
 set t_Co=256
-" colorscheme onedark
-colorscheme dracula
+" colorscheme dracula
+color darmody-dracula
+" color darmody-OceanicNext
 
 " 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
