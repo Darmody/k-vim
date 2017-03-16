@@ -20,7 +20,7 @@ let s:guiWhite = 'ffffff'
 
 " {{{
 if &background == "light"
-  let s:gui0A = "9C8201"
+  let s:gui0A = "ffffff"
   let s:gui0B = "70916C"
   let s:gui0C = "458282"
 endif
